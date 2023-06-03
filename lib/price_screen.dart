@@ -93,7 +93,6 @@ class _PriceScreenState extends State<PriceScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // getDropdownItems();
     return Scaffold(
       appBar: AppBar(
         // title: Text('🤑 Coin Ticker'),
@@ -171,5 +170,3 @@ class CryptoCard extends StatelessWidget {
     );
   }
 }
-
-//https://rest.coinapi.io/v1/exchangerate/BTC/USD?apikey=B04D3611-B390-46A2-A72D-47983D432408
