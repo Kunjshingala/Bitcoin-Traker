@@ -1,10 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-import 'coin_data.dart';
 import 'dart:io' show Platform;
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'coin_data.dart';
 
 class PriceScreen extends StatefulWidget {
   const PriceScreen({super.key});
+
   @override
   _PriceScreenState createState() => _PriceScreenState();
 }
@@ -44,6 +47,7 @@ class _PriceScreenState extends State<PriceScreen> {
       pickerItems.add(Text(currency));
     }
     return CupertinoPicker(
+        backgroundColor: Colors.lightBlue,
         itemExtent: 32,
         onSelectedItemChanged: (selectedIndex) {
           print(selectedIndex);
@@ -74,10 +78,11 @@ class _PriceScreenState extends State<PriceScreen> {
   void getData() async {
     isWaiting = true;
     try {
-      double data = await CoinData().getCoinData(selectedCurrency);
+      Map<String, String> data = await CoinData().getCoinData(selectedCurrency);
       isWaiting = false;
       setState(() {
-        coinValues = data as Map<String, String>;
+        coinValues = data;
+        print(coinValues);
       });
     } catch (e) {
       print(e);
@@ -138,8 +143,10 @@ class _PriceScreenState extends State<PriceScreen> {
   }
 }
 
+// CRYPTO CARD
 class CryptoCard extends StatelessWidget {
-  const CryptoCard({this.value, this.selectedCurrency, this.cryptoCurrency});
+  const CryptoCard(
+      {super.key, this.value, this.selectedCurrency, this.cryptoCurrency});
 
   final String? value;
   final String? selectedCurrency;
